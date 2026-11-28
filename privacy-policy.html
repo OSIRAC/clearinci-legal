@@ -7,7 +7,7 @@
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      max-width: 800px;
+      max-width: 820px;
       margin: 36px auto;
       padding: 0 20px 64px;
       color: #11221f;
@@ -19,6 +19,7 @@
     .meta { color: #647873; font-size: 14px; margin-bottom: 20px; }
     .lang-nav {
       display: flex;
+      flex-wrap: wrap;
       gap: 10px;
       margin-bottom: 18px;
     }
@@ -30,6 +31,11 @@
       border-radius: 99px;
       font-size: 13px;
       font-weight: 700;
+    }
+    .lang-nav a.secondary {
+      background: #ffffff;
+      color: #0f5149;
+      border: 1.5px solid #0f5149;
     }
     .card {
       background: #ffffff;
@@ -49,54 +55,66 @@
   <div class="lang-nav">
     <a href="#en">English</a>
     <a href="#tr">Türkçe</a>
+    <a href="terms.html" class="secondary">Terms of Use / Kullanım Koşulları →</a>
   </div>
 
   <div class="card" id="en">
-    <h2>English — Privacy Policy &amp; Disclaimer</h2>
+    <h2>English — Privacy Policy &amp; Data Transparency</h2>
 
     <h3>1. Local-First Privacy (No Account Required)</h3>
     <p>
       ClearINCI does not require registration, login, email, name, or personal profile uploads.
-      Your skin profile filters (acne-prone, fungal acne, pregnancy, fragrance-free), saved product shelf,
-      scan history, and custom avoid list are stored <strong>locally on your device</strong>.
+      Your family &amp; skin profile filters (baby/child safety, pregnancy, clean/hormone shield, acne-prone,
+      fungal acne, eczema/allergens, haircare), saved product shelf, scan history, and custom avoid list are
+      stored <strong>locally on your device</strong>.
     </p>
 
-    <h3>2. Camera, Photos &amp; On-Device OCR</h3>
-    <p>
-      Camera and photo library permissions are used strictly when you scan a cosmetic barcode or label.
-      Label text recognition (Google ML Kit OCR) runs <strong>100% locally on your device</strong>.
-      <strong>Your photos are never uploaded to our servers or shared with third parties.</strong>
-    </p>
+    <h3>2. Camera, Photos &amp; Ephemeral Hybrid OCR</h3>
+    <ul>
+      <li>
+        <strong>Primary On-Device OCR:</strong> Camera and photo picker access are used strictly when you scan a
+        cosmetic barcode or ingredient label. Primary text recognition (Google ML Kit / Apple Vision) runs locally
+        on your device.
+      </li>
+      <li>
+        <strong>Ephemeral Hybrid Glare Recovery:</strong> Only when a curved or glossy bottle label contains
+        glare-washed or distorted characters that cannot be fully resolved offline, ClearINCI transmits the
+        label image over encrypted HTTPS (TLS) strictly for <strong>ephemeral, real-time ingredient text
+        transcription</strong> (via our secure proxy and Google Gemini Vision API). The image is processed
+        transiently in memory solely to return the INCI text and is <strong>never stored in our databases,
+        never linked to personal identity, and never used for advertising or profiling</strong>.
+      </li>
+    </ul>
 
     <h3>3. Barcode Lookups &amp; Anonymous Community Ingredient Contributions</h3>
     <ul>
       <li>
-        <strong>Open Beauty Facts Lookup:</strong> When you scan a product barcode, ClearINCI sends only the
-        public product barcode number to Open Beauty Facts and our read-only cosmetic barcode directory to retrieve
-        the product's public INCI ingredient list.
+        <strong>Open Beauty Facts &amp; Catalog Lookup:</strong> When you scan a product barcode, ClearINCI queries
+        only the public barcode number against our bundled catalog, our read-only cosmetic directory, and Open Beauty
+        Facts to retrieve the product's public INCI ingredient list.
       </li>
       <li>
         <strong>Anonymous Community Barcode Text Submissions (Supabase):</strong> If a cosmetic barcode is not yet
-        in our directory and you subsequently scan its ingredient label with high OCR confidence, ClearINCI may submit
-        <em>only</em> the product barcode number, parsed INCI ingredient text, and an anonymous randomized session token
-        to help build the shared cosmetic barcode directory. <strong>No photos, no personal identity, no email,
-        and no personal skin profile data are ever included.</strong>
+        in our directory and you subsequently scan its complete ingredient label with high EU CosIng confidence,
+        ClearINCI may submit <em>only</em> the public barcode number, parsed INCI ingredient text, and an anonymous
+        session token to improve the shared cosmetic directory. <strong>No photos, personal identity, email, or
+        personal skin profile settings are ever included.</strong>
       </li>
     </ul>
 
     <h3>4. Subscriptions &amp; In-App Purchases</h3>
     <p>
-      Optional ClearINCI Pro subscriptions and one-time purchases are processed securely through Google Play Billing
-      (and RevenueCat solely to verify subscription entitlement status). ClearINCI never accesses or stores your
-      payment card details.
+      Optional ClearINCI Pro subscriptions and one-time lifetime unlocks are processed securely through Google Play
+      Billing / Apple App Store (and RevenueCat solely to verify anonymous subscription entitlement status).
+      ClearINCI never accesses or stores your payment card details.
     </p>
 
     <h3>5. Informational &amp; Non-Medical Disclaimer</h3>
     <p>
       ClearINCI provides cosmetic ingredient reference information based on the public EU CosIng inventory and
       cosmetic literature. It is strictly for informational and educational purposes and does not constitute medical,
-      dermatological, or diagnostic advice. Always consult a qualified dermatologist or physician, especially
-      regarding severe allergies or pregnancy.
+      pediatric, dermatological, or diagnostic advice. Always consult a qualified physician or dermatologist,
+      especially regarding infants, children, severe allergies, or pregnancy.
     </p>
 
     <h3>6. Data Deletion &amp; Contact</h3>
@@ -108,47 +126,56 @@
   </div>
 
   <div class="card" id="tr">
-    <h2>Türkçe — Gizlilik Politikası ve Yasal Bilgilendirme</h2>
+    <h2>Türkçe — Gizlilik Politikası ve Veri Şeffaflığı</h2>
 
-    <h3>1. Cihaz İçi Gizlilik (Hesap Gerekmez)</h3>
+    <h3>1. Cihaz İçi Gizlilik (Üyelik Gerekmez)</h3>
     <p>
-      ClearINCI üyelik, giriş, e-posta veya kişisel kimlik bilgisi gerektirmez. Cilt profili filtreleriniz
-      (akne/gözenek, fungal akne, hamilelik, parfümsüz), ürün rafınız, tarama geçmişiniz ve özel yasaklı madde
-      listeniz <strong>yalnızca kendi cihazınızda saklanır</strong>.
+      ClearINCI üyelik, giriş, ad-soyad veya e-posta gerektirmez. Aile ve cilt profili kalkanlarınız
+      (bebek/çocuk, hamilelik, temiz içerik ve hormon, akne/gözenek, fungal akne, egzama/alerjen, saç bakımı),
+      ürün rafınız, tarama geçmişiniz ve özel yasaklı madde listeniz <strong>yalnızca kendi cihazınızda saklanır</strong>.
     </p>
 
-    <h3>2. Kamera, Galeri ve Cihaz İçi Metin Okuma (OCR)</h3>
-    <p>
-      Kamera ve galeri izinleri yalnızca barkod veya ürün etiketi taradığınızda kullanılır. Etiket metni okuma
-      (Google ML Kit OCR) <strong>%100 cihaz içinde çalışır</strong>.
-      <strong>Çektiğiniz fotoğraflar asla sunuculara yüklenmez veya üçüncü taraflarla paylaşılmaz.</strong>
-    </p>
+    <h3>2. Kamera, Galeri ve Anlık (Kaydedilmeyen) Hibrit Etiket Okuma</h3>
+    <ul>
+      <li>
+        <strong>Birincil Cihaz İçi OCR:</strong> Kamera ve fotoğraf seçici yalnızca siz barkod veya ürün etiketi
+        taradığınızda çalışır. Birincil metin okuma (Google ML Kit / Apple Vision) doğrudan cihazınızda gerçekleşir.
+      </li>
+      <li>
+        <strong>Anlık (Ephemeral) Hibrit Parlama Çözümleme:</strong> Yalnızca parlak veya kavisli şişelerde ışık
+        kırılması nedeniyle çevrimdışı okunamayan harfler kaldığında, etiket görüntüsü şifreli HTTPS (TLS) üzerinden
+        yalnızca <strong>anlık INCI metin çözümlemesi</strong> amacıyla (güvenli sunucu vekilimiz ve Google Gemini
+        Vision API aracılığıyla) işlenir. Görüntü yalnızca metni çıkarmak için anlık bellekte okunur;
+        <strong>veritabanlarımızda asla saklanmaz, kimliğinizle ilişkilendirilmez ve reklam/profilleme için kullanılmaz</strong>.
+      </li>
+    </ul>
 
     <h3>3. Barkod Sorguları ve Anonim Topluluk İçerik Katkısı</h3>
     <ul>
       <li>
-        <strong>Open Beauty Facts Sorgusu:</strong> Barkod okuttuğunuzda, yalnızca ürünün herkese açık barkod numarası
-        Open Beauty Facts ve kozmetik barkod veritabanında içerik listesini getirmek için sorgulanır.
+        <strong>Open Beauty Facts Sorgusu:</strong> Barkod okuttuğunuzda yalnızca ürünün herkese açık barkod numarası
+        içerik listesini getirmek için sorgulanır.
       </li>
       <li>
         <strong>Anonim Topluluk Barkod Katkısı (Supabase):</strong> Veritabanında henüz bulunmayan bir kozmetik
-        barkodu sonrasında etiketi yüksek doğrulukla okuttuğunuzda, yalnızca barkod numarası, çözümlenen INCI içerik
-        metni ve kimliksiz anonim oturum belirteci ortak kozmetik veritabanını geliştirmek için gönderilebilir.
-        <strong>Hiçbir fotoğraf, kişisel bilgi, e-posta veya cilt profili verisi asla gönderilmez.</strong>
+        barkodun etiketini tam ve yüksek doğrulukla okuttuğunuzda, yalnızca barkod numarası, çözümlenen INCI içerik
+        metni ve kimliksiz anonim oturum belirteci ortak kozmetik rehberini geliştirmek için gönderilebilir.
+        <strong>Hiçbir fotoğraf, kişisel bilgi, e-posta veya cilt/aile profili verisi gönderilmez.</strong>
       </li>
     </ul>
 
     <h3>4. Abonelikler ve Ödemeler</h3>
     <p>
-      İsteğe bağlı ClearINCI Pro abonelikleri ve tek seferlik paketler Google Play Faturalandırma (ve abonelik
-      doğrulaması için RevenueCat) üzerinden güvenle işlenir. ClearINCI kart bilgilerinizi asla görmez veya saklamaz.
+      İsteğe bağlı ClearINCI Pro abonelikleri ve tek seferlik ömür boyu paketler Google Play / App Store
+      faturalandırma altyapısı (ve anonim abonelik doğrulaması için RevenueCat) üzerinden güvenle işlenir.
+      ClearINCI kart bilgilerinizi asla görmez veya saklamaz.
     </p>
 
     <h3>5. Bilgilendirme ve Tıbbi Feragat</h3>
     <p>
-      ClearINCI, kamuya açık EU CosIng envanteri ve kozmetik literatürü temel alınarak bilgilendirme amaçlı içerik
-      analizi sunar; tıbbi veya dermatolojik tanı ya da tavsiye yerine geçmez. Özellikle alerji veya hamilelik
-      durumlarında doktorunuza veya dermatoloğunuza danışınız.
+      ClearINCI, kamuya açık AB CosIng envanteri ve kozmetik literatürü temel alınarak bilgilendirme amaçlı içerik
+      analizi sunar; tıbbi, pediatrik veya dermatolojik tanı ya da tavsiye yerine geçmez. Özellikle bebek/çocuk
+      ürünleri, şiddetli alerjiler veya hamilelik/emzirme dönemlerinde doktorunuza veya dermatoloğunuza danışınız.
     </p>
 
     <h3>6. Veri Silme ve İletişim</h3>
